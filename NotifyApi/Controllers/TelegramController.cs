@@ -26,8 +26,9 @@ namespace TGS.NotifyApi.Controllers
             _configuration = configuration;
         }
 
-        [HttpPost("prometheus-alert")]
+        [HttpPost("{env}/prometheus-alert")]
         public async Task<AlertManagerResponse> SendAsync(
+            string env,
             [FromServices] IConfiguration configuration,
             [FromServices] IJsonSerializationProvider json,
             [FromBody]AlertManagerRequest request)
@@ -36,19 +37,10 @@ namespace TGS.NotifyApi.Controllers
 
             try
             {
-#if DEV
-                var env = "Dev";
-#endif
-#if STAGING
-                var env = "Staging";
-#endif
-#if PRODUCTION
-                var env = "Production";
-#endif
                 var data = json.SerializeToString(request);
                 Console.WriteLine(data);
 
-                var channel = _configuration.GetSection($"Telegram:{env}PrometheusChannel").Value;
+                var channel = _configuration.GetSection($"Telegram:{env}-PrometheusChannel").Value;
 
                 var messageList = request.Alerts.Select(p =>
                     $@"
