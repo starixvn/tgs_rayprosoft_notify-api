@@ -7,6 +7,12 @@ pipeline {
 	}
 
     stages {
+		stage('Clean') {
+            steps {
+                cleanWs()
+            }
+        }
+		
         stage('Build') {
             steps {
                 sh 'dotnet build -c $BuildConfiguration'
