@@ -1,6 +1,6 @@
-﻿namespace TGS.NotifyApi.Controllers.Messages
+﻿namespace TGS.NotifyApi.Messages
 {
-    public class AlertManagerResponse
+    public class AlertResponse
     {
         public bool IsSuccess { get; set; }
         public string Message { get; set; }

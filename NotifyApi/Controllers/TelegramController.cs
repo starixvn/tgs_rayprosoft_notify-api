@@ -6,9 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using TGS.Core.Infrastructures.Json;
 using TGS.NotifyApi.Clients;
-using TGS.NotifyApi.Controllers.Messages;
+using TGS.NotifyApi.Messages;
 
-namespace TGS.NotifyApi.Controllers
+namespace TGS.NotifyApi.Controllers 
 {
     [ApiController]
     [Route("telegram")]
@@ -27,14 +27,12 @@ namespace TGS.NotifyApi.Controllers
         }
 
         [HttpPost("{env}/prometheus-alert")]
-        public async Task<AlertManagerResponse> SendAsync(
+        public async Task<AlertResponse> SendAsync(
             string env,
             [FromServices] IConfiguration configuration,
             [FromServices] IJsonSerializationProvider json,
-            [FromBody]AlertManagerRequest request)
+            [FromBody] PrometheusAlertRequest request)
         {
-            Console.WriteLine(DateTime.Now);
-
             try
             {
                 var data = json.SerializeToString(request);
@@ -55,10 +53,49 @@ Summary: {p.Annotations.Summary}")
                 var message = string.Join($@"", messageList);
                 await _client.SendMessageAsync(message, channel);
 
-                return new AlertManagerResponse
+                return new AlertResponse
                 { 
                     IsSuccess=true,
                     Message=string.Empty
+                };
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                _logger.LogError(e.InnerException.Message);
+                throw;
+            }
+        }
+
+        [HttpPost("{env}/log-alert")]
+        public async Task<AlertResponse> SendAsync(
+            string env,
+            [FromServices] IConfiguration configuration,
+            [FromServices] IJsonSerializationProvider json,
+            [FromBody] LogAlertRequest request)
+        {
+            try
+            {
+                var channel = _configuration.GetSection($"Telegram:{env}-LogChannel").Value;
+                var message = $@"
+Type: [{request.Type}]
+Id: {request.Id}
+Prefix: {request.Prefix}
+Path: <b>{request.Path}</b>
+Method: <u>{request.Method}</u>
+Server Name: {request.ServerName}
+Response Code: {request.ResponseCode}
+Recorded On: {request.RecordedOn}
+Exception: {request.Exception}
+Stack Trace: {request.Stacktrace}
+";
+
+                await _client.SendMessageAsync(message, channel);
+
+                return new AlertResponse
+                {
+                    IsSuccess = true,
+                    Message = string.Empty
                 };
             }
             catch (Exception e)

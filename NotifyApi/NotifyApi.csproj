@@ -17,4 +17,8 @@
     <PackageReference Include="TGS.Core.Infrastructures.Json" Version="0.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Messages\Messages.csproj" />
+  </ItemGroup>
+
 </Project>

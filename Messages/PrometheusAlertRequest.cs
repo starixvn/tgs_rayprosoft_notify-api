@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace TGS.NotifyApi.Controllers.Messages
+namespace TGS.NotifyApi.Messages
 {
-    public class AlertManagerRequest
+    public class PrometheusAlertRequest
     {
         public string Receiver { get; set; }
         public string Status { get; set; }
