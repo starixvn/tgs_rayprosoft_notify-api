@@ -13,6 +13,12 @@ pipeline {
             }
         }
 		
+		stage('Clone') {
+			steps {
+				git branch: "${params.BRANCH}", url: "https://${gitlab_user_pwd_USR}:${gitlab_user_pwd_PSW}@gitlab.com:rayprosoft/notify-api.git"
+			}
+		}
+		
         stage('Build') {
             steps {
                 sh 'dotnet build -c $BuildConfiguration'
