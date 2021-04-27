@@ -72,7 +72,7 @@ Summary: {p.Annotations.Summary}")
             string env,
             [FromServices] IConfiguration configuration,
             [FromServices] IJsonSerializationProvider json,
-            [FromBody] LogAlertRequest request)
+            [FromBody] AlertLogRequest request)
         {
             try
             {
