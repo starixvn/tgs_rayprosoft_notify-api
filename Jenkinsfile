@@ -15,7 +15,7 @@ pipeline {
 		
 		stage('Clone') {
 			steps {
-				git branch: "*/master", url: "https://${gitlab_user_pwd_USR}:${gitlab_user_pwd_PSW}@gitlab.com/rayprosoft/notify-api.git"
+				git branch: "master", url: "https://${gitlab_user_pwd_USR}:${gitlab_user_pwd_PSW}@gitlab.com/rayprosoft/notify-api.git"
 			}
 		}
 		
