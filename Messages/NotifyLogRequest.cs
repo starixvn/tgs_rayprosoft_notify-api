@@ -2,7 +2,7 @@
 
 namespace TGS.NotifyApi.Messages
 {
-    public class AlertLogRequest
+    public class NotifyLogRequest
     {
         public string Type { get; set; }
         public Guid Id { get; set; }

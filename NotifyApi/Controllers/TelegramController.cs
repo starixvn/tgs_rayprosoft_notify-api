@@ -27,7 +27,7 @@ namespace TGS.NotifyApi.Controllers
         }
 
         [HttpPost("{env}/prometheus-alert")]
-        public async Task<AlertResponse> SendAsync(
+        public async Task<NotifyResponse> SendAsync(
             string env,
             [FromServices] IConfiguration configuration,
             [FromServices] IJsonSerializationProvider json,
@@ -53,7 +53,7 @@ Summary: {p.Annotations.Summary}")
                 var message = string.Join($@"", messageList);
                 await _client.SendMessageAsync(message, channel);
 
-                return new AlertResponse
+                return new NotifyResponse
                 { 
                     IsSuccess=true,
                     Message=string.Empty
@@ -68,11 +68,11 @@ Summary: {p.Annotations.Summary}")
         }
 
         [HttpPost("{env}/log-alert")]
-        public async Task<AlertResponse> SendAsync(
+        public async Task<NotifyResponse> SendAsync(
             string env,
             [FromServices] IConfiguration configuration,
             [FromServices] IJsonSerializationProvider json,
-            [FromBody] AlertLogRequest request)
+            [FromBody] NotifyLogRequest request)
         {
             try
             {
@@ -92,7 +92,7 @@ Stack Trace: {request.Stacktrace}
 
                 await _client.SendMessageAsync(message, channel);
 
-                return new AlertResponse
+                return new NotifyResponse
                 {
                     IsSuccess = true,
                     Message = string.Empty
