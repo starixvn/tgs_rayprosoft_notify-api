@@ -37,7 +37,7 @@ pipeline {
 		stage('Deploy') {
 		    steps {
 				script {
-					sh "sudo docker build -f NotifyApi\Dockerfile -t registry.gitlab.com/rayprosoft/turnkey-gaming-system/notify-api:${TAG} ."
+					sh "sudo docker build -f NotifyApi/Dockerfile -t registry.gitlab.com/rayprosoft/turnkey-gaming-system/notify-api:${TAG} ."
 					sh "sudo docker push registry.gitlab.com/rayprosoft/turnkey-gaming-system/notify-api:${TAG}"
 					sh "sudo docker push registry.gitlab.com/rayprosoft/turnkey-gaming-system/notify-api:dev"
 							
