@@ -11,7 +11,7 @@ var httpClient = new HttpClient();
 var data = await httpClient.GetFromJsonAsync<Category[]>(url)
     .ConfigureAwait(false);
 
-var unhealthyServices = data?.SelectMany(p => p.Entries)
+var unhealthyServices = data.SelectMany(p => p.Entries)
     .Where(p=>p.Status == "Healthy")
     .Select(p=>p.Name)
     .ToArray();
@@ -24,6 +24,7 @@ ITelegramApiClient telergramApiClient = new TelegramApiClient(config);
 var msg = @$"The below services fails
 {message}
 -- tgs devops";
+
 _ = await telergramApiClient.SendMessageAsync(msg).ConfigureAwait(false);
 
 

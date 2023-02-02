@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messages", "Messages\Messag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tgs.HealthCheck.Notify", "HealthCheck.Notify\Tgs.HealthCheck.Notify.csproj", "{655EC7D6-156E-4D5B-9855-2D9DA39E1FA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tgs.Kubernetes.Services", "Tgs.Kubernetes.Services\Tgs.Kubernetes.Services.csproj", "{33DFCAB7-B6DF-4783-ABDD-80EDFEE09554}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,16 @@ Global
 		{655EC7D6-156E-4D5B-9855-2D9DA39E1FA7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{655EC7D6-156E-4D5B-9855-2D9DA39E1FA7}.Staging|Any CPU.ActiveCfg = Debug|Any CPU
 		{655EC7D6-156E-4D5B-9855-2D9DA39E1FA7}.Staging|Any CPU.Build.0 = Debug|Any CPU
+		{33DFCAB7-B6DF-4783-ABDD-80EDFEE09554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33DFCAB7-B6DF-4783-ABDD-80EDFEE09554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33DFCAB7-B6DF-4783-ABDD-80EDFEE09554}.Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{33DFCAB7-B6DF-4783-ABDD-80EDFEE09554}.Dev|Any CPU.Build.0 = Debug|Any CPU
+		{33DFCAB7-B6DF-4783-ABDD-80EDFEE09554}.Production|Any CPU.ActiveCfg = Debug|Any CPU
+		{33DFCAB7-B6DF-4783-ABDD-80EDFEE09554}.Production|Any CPU.Build.0 = Debug|Any CPU
+		{33DFCAB7-B6DF-4783-ABDD-80EDFEE09554}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33DFCAB7-B6DF-4783-ABDD-80EDFEE09554}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33DFCAB7-B6DF-4783-ABDD-80EDFEE09554}.Staging|Any CPU.ActiveCfg = Debug|Any CPU
+		{33DFCAB7-B6DF-4783-ABDD-80EDFEE09554}.Staging|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
